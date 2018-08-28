@@ -91,6 +91,56 @@ Contains the user and campaigns for which is_click needs to be predicted (Jan 18
 - Count User Frequency
 - Sentiment of Mail
 
+#### Correlation between Extracted Features and Output
+
+<p align="center">
+<img src="img/corr.png" alt="Correlation between extracted features and output"/>
+</p>
+
+---
+
+## Data Analysis
+
+#### No of Emails per Communication Type 
+
+<p align="center">
+<img src="img/comm_type.png" alt="No of emails per communication type"/>
+</p>
+
+#### Distribution of Click Confidence, Open Confidence, Is Open and Is Click
+
+<p align="center">
+<img src="img/co_dist.png" alt="Distribution"/>
+</p>
+
+#### Distribution of Click Confidence and Open Confidence for Is Click=0
+
+<p align="center">
+<img src="img/ccoc_is0.png" alt="Distribution CC OC for is_click=0"/>
+</p>
+
+#### Distribution of Click Confidence and Open Confidence and Is Click=1
+
+<p align="center">
+<img src="img/ccoc_is1.png" alt="Distribution CC OC for is_click=1"/>
+</p>
+
+Further data analysis - <a href="https://github.com/imrahulr/Lord-of-the-Machines/blob/master/eda.ipynb">Link</a><br>
+
+
+---
+
+## Under-sampling using Repeated Edited Nearest Neighbour Algorithm
+
+The train dataset was highly imbalanced and contained 1010409 samples with is_click=0 while only 12782 samples with is_click=1.
+
+<p align="center">
+<img src="img/output.png" alt="Output Distribution"/>
+</p>
+
+After undersampling the data using RENN, the number of samples with is_click=0 was reduced to 958301. Other algorithms such as ENN, AllKNN and SMOTE were also explored. But I found RENN to the best of all though it required significant amount of time to undersample the dataset.
+
+
 ---
 
 ## Our Solution
@@ -99,5 +149,22 @@ The overall solution consists of a weighted average ensemble of two boosting alg
 - XGBoost
 - LightGBM
 
+
+---
+
+## Results
+
+| Sr No. | Public LB AUC | Private LB AUC |
+|:----:|:----:|:------:|
+| LightGBM | 0.68173 | - |
+| XGBoost | 0.66823 | - |
+| Ensemble | 0.68799 | 0.68630 |
+
+- LightGBM outperformed XGBoost by a significant margin. Moreover, it required much less time to train than XGBoost. 
+- Extracting prominent features provided a major boost to the score. Most of these features were based on modelling user characteristics and extracting time series properties.
+- Undersampling the data also provided a significant increase in the score.
+- Boosting algorithms mostly ruled the competition.
+
+### Thank You!
 
 ---
