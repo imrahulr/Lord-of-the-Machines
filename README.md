@@ -160,6 +160,8 @@ The overall solution consists of a weighted average ensemble of two boosting alg
 | XGBoost | 0.66823 | - |
 | Ensemble | 0.68799 | 0.68630 |
 
+#### Key Points - 
+
 - LightGBM outperformed XGBoost by a significant margin. Moreover, it required much less time to train than XGBoost. 
 - Extracting prominent features provided a major boost to the score. Most of these features were based on modelling user characteristics and extracting time series properties.
 - Undersampling the data also provided a significant increase in the score.
